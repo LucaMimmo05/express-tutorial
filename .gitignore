@@ -1,0 +1,38 @@
+# Dipendenze
+node_modules/
+
+# Variabili d'ambiente
+.env
+
+# Log
+logs/
+*.log
+npm-debug.log*
+
+# File temporanei
+.tmp/
+temp/
+
+# Upload (opzionale, dipende se vuoi tracciare i file caricati)
+uploads/*.png
+uploads/*.jpg
+uploads/*.jpeg
+uploads/*.gif
+uploads/*.pdf
+
+# Cache
+.cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
