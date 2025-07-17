@@ -46,6 +46,4 @@ app.use(errorHandler); // Gestione errori globale
 // Avvio del server
 app.listen(config.PORT, () => {
     console.log(`🚀 Server avviato su http://localhost:${config.PORT}`);
-    console.log(`📊 Ambiente: ${process.env.NODE_ENV || "development"}`);
-    console.log(`⏰ Data avvio: ${new Date().toISOString()}`);
 });
