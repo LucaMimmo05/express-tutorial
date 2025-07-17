@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { config } from "../config/config.js";
 
 // Home page con impostazione cookie
@@ -107,3 +108,29 @@ export const removeSession = (req, res) => {
     req.session.destroy();
     res.send("Session removed");
 };
+
+// Dashboard
+export const visualizeDashboard = (req, res) => {
+    const authHeader = req.header("Authorization");
+
+    console.log("Received token:", authHeader);
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Token missing or malformed" });
+    }
+
+    const token = authHeader.split(" ")[1]; // estrai solo il token
+
+    try {
+        const decodedToken = jwt.verify(token, "test#secret");
+
+        if (decodedToken.username) {
+            res.send(`Welcome, ${decodedToken.username}`);
+        } else {
+            res.status(403).send("Access denied");
+        }
+    } catch (err) {
+        return res.status(401).json({ message: "Invalid or expired token" });
+    }
+};
+

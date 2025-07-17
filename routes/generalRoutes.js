@@ -7,7 +7,8 @@ import {
     handleFormUpload,
     triggerError,
     createSession,
-    removeSession
+    removeSession,
+    visualizeDashboard
 } from "../controllers/generalController.js";
 
 const router = express.Router();
@@ -32,5 +33,8 @@ router.get("/visit", createSession);
 
 // GET /remove-visit - Endpoint per rimuovere una sessione
 router.get("/remove-session", removeSession);
+
+//GET /dashboard
+router.get("/dashboard", visualizeDashboard);
 
 export default router;

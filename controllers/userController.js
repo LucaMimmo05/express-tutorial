@@ -1,3 +1,6 @@
+import jwt from "jsonwebtoken"
+import bcrypt from "bcryptjs"
+
 // Controller per la gestione degli utenti
 export const getUsers = (req, res) => {
     try {
@@ -37,4 +40,26 @@ export const searchController = (req, res) => {
             error: error.message,
         });
     }
+};
+
+const users = [];
+// Registrazione utente
+export const userRegistration = async (req, res) => {
+    const { username, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.push({ username, password: hashedPassword });
+    res.send("User registered");
+};
+
+// Login utente
+export const userLogin = async (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find((u) => u.username === username);
+    if (!user || !(await bcrypt.compare(password, user.password ))) {
+        return res.send("Not authorized");
+    }
+
+    const token = jwt.sign({username}, "test#secret",  { expiresIn: "1h" })
+
+    res.json({token});
 };
