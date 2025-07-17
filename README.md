@@ -1,13 +1,8 @@
-# ## 📋 Descrizi├── 📁 controllers/ # Controller per la logica business
-
-│ ├── generalController.js # Cookie, upload, home, sessioni, dashboard
-│ ├── personController.js # CRUD persone
-│ └── userController.js # Gestione utenti, auth JWT
-Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, upload di file, gestione cookie, **sessioni utente**, **autenticazione JWT** e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.ress App - Progetto Tutorial ✨
+# Express App - Progetto Tutorial ✨
 
 ## 📋 Descrizione
 
-Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, upload di file, gestione cookie e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.
+Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, upload di file, gestione cookie, **sessioni utente**, **autenticazione JWT** e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.
 
 ## 🏗️ Struttura del Progetto
 
@@ -18,9 +13,9 @@ express-app/
 │   ├── db.js               # Connessione database MongoDB
 │   └── multer.js           # Configurazione upload file
 ├── 📁 controllers/         # Controller per la logica business
-│   ├── generalController.js # Cookie, upload, home
+│   ├── generalController.js # Cookie, upload, home, sessioni, dashboard
 │   ├── personController.js  # CRUD persone
-│   └── userController.js    # Gestione utenti
+│   └── userController.js    # Gestione utenti, auth JWT
 ├── 📁 middleware/          # Middleware personalizzati
 │   └── index.js            # Logging, errori, 404
 ├── 📁 models/              # Modelli database Mongoose
@@ -33,8 +28,10 @@ express-app/
 ├── 📁 public/              # File statici
 ├── 📁 uploads/             # File caricati dagli utenti
 ├── 📁 views/               # Template (future implementazioni)
-├── .env                    # Variabili d'ambiente
+├── .env                    # Variabili d'ambiente (NON committare)
+├── .env.example            # Template variabili d'ambiente
 ├── .gitignore              # File da ignorare in Git
+├── SECURITY.md             # Guida alla sicurezza
 ├── index.js                # File principale dell'app
 ├── package.json            # Dipendenze e scripts
 └── README.md               # Documentazione (questo file)
