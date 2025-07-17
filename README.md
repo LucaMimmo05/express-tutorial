@@ -1,4 +1,9 @@
-# Express App - Progetto Tutorial ✨
+# ## 📋 Descrizi├── 📁 controllers/ # Controller per la logica business
+
+│ ├── generalController.js # Cookie, upload, home, sessioni, dashboard
+│ ├── personController.js # CRUD persone
+│ └── userController.js # Gestione utenti, auth JWT
+Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, upload di file, gestione cookie, **sessioni utente**, **autenticazione JWT** e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.ress App - Progetto Tutorial ✨
 
 ## 📋 Descrizione
 
@@ -21,9 +26,9 @@ express-app/
 ├── 📁 models/              # Modelli database Mongoose
 │   └── Person.js           # Schema persona
 ├── 📁 routes/              # Definizione rotte organizzate
-│   ├── generalRoutes.js    # Rotte generali
+│   ├── generalRoutes.js    # Rotte generali, cookie, sessioni, dashboard
 │   ├── personRoutes.js     # Rotte CRUD persone
-│   ├── userRoutes.js       # Rotte utenti
+│   ├── userRoutes.js       # Rotte utenti, auth JWT
 │   └── index.js            # Aggregatore rotte
 ├── 📁 public/              # File statici
 ├── 📁 uploads/             # File caricati dagli utenti
@@ -85,20 +90,25 @@ express-app/
 
 ### 🏠 Endpoint Generali
 
-| Metodo | Endpoint         | Descrizione                |
-| ------ | ---------------- | -------------------------- |
-| `GET`  | `/`              | Home page (imposta cookie) |
-| `GET`  | `/fetch`         | Leggi cookie salvati       |
-| `GET`  | `/remove-cookie` | Rimuovi cookie             |
-| `POST` | `/form`          | Upload file con form data  |
-| `GET`  | `/error`         | Test gestione errori       |
+| Metodo | Endpoint          | Descrizione                       |
+| ------ | ----------------- | --------------------------------- |
+| `GET`  | `/`               | Home page (imposta cookie)        |
+| `GET`  | `/fetch`          | Leggi cookie salvati              |
+| `GET`  | `/remove-cookie`  | Rimuovi cookie                    |
+| `POST` | `/form`           | Upload file con form data         |
+| `GET`  | `/error`          | Test gestione errori              |
+| `GET`  | `/visit`          | Crea/incrementa sessione          |
+| `GET`  | `/remove-session` | Rimuovi sessione utente           |
+| `GET`  | `/dashboard`      | Dashboard protetta (richiede JWT) |
 
-### 👤 Gestione Utenti
+### 👤 Gestione Utenti e Autenticazione
 
 | Metodo | Endpoint                   | Descrizione                   |
 | ------ | -------------------------- | ----------------------------- |
 | `GET`  | `/user/search?keyword=...` | Ricerca utenti                |
 | `GET`  | `/user/:username`          | Informazioni utente specifico |
+| `POST` | `/user/register`           | Registrazione nuovo utente    |
+| `POST` | `/user/login`              | Login utente (genera JWT)     |
 
 ### 👥 CRUD Persone
 
@@ -118,11 +128,15 @@ express-app/
 -   ✅ **CRUD completo** per entità Person
 -   ✅ **Upload file** con validazione tipo/dimensione
 -   ✅ **Gestione cookie** sicura
+-   ✅ **Gestione sessioni** con express-session
+-   ✅ **Autenticazione JWT** completa (register/login/protected routes)
+-   ✅ **Hashing password** con bcryptjs
 -   ✅ **Middleware di logging** per tutte le richieste
 -   ✅ **Gestione errori centralizzata** e dettagliata
 -   ✅ **Validazione input** robusta
 -   ✅ **Struttura modulare** MVC
 -   ✅ **Risposte JSON standardizzate**
+-   ✅ **Configurazione sicura** con variabili d'ambiente
 
 ### 🛡️ Sicurezza e Validazione
 
@@ -134,6 +148,9 @@ express-app/
 -   🚫 Protezione contro path traversal negli upload
 -   🔐 **Gestione sicura variabili d'ambiente** (.env escluso da Git)
 -   📋 **Template configurazione** (.env.example per nuovi sviluppatori)
+-   🔑 **JWT Authentication** con token sicuri
+-   🔒 **Password hashing** con bcryptjs (salt rounds: 10)
+-   🛡️ **Bearer token** validation sui endpoint protetti
 
 ### 🎨 Miglioramenti Strutturali
 
@@ -177,6 +194,30 @@ curl http://localhost:3000/person
 curl "http://localhost:3000/user/search?keyword=mario"
 ```
 
+### Autenticazione JWT:
+
+```bash
+# 1. Registra un nuovo utente
+curl -X POST http://localhost:3000/user/register \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "password": "password123"}'
+
+# 2. Effettua login per ottenere il token
+curl -X POST http://localhost:3000/user/login \
+  -H "Content-Type: application/json" \
+  -d '{"username": "testuser", "password": "password123"}'
+# Output: {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}
+
+# 3. Accedi alla dashboard protetta con il token
+curl -H "Authorization: Bearer YOUR_JWT_TOKEN_HERE" \
+  http://localhost:3000/dashboard
+# Output: "Welcome, testuser"
+
+# 4. Tentativo accesso senza token (fallisce)
+curl http://localhost:3000/dashboard
+# Output: {"message": "Token missing or malformed"}
+```
+
 ## 🔄 Changelog
 
 ### v2.0 - Ristrutturazione Completa ✨
@@ -187,7 +228,12 @@ curl "http://localhost:3000/user/search?keyword=mario"
 -   **🎯 Routing**: Organizzazione modulare delle rotte
 -   **📊 Configurazione**: Sistema centralizzato per configurazioni
 -   **✅ Validazione**: Migliorata validazione input e gestione errori
--   **📖 Documentazione**: Aggiunta documentazione completa
+-   **� Sicurezza**: Gestione sicura variabili d'ambiente
+-   **🍪 Sessioni**: Aggiunta gestione sessioni utente
+-   **🔑 Autenticazione**: Sistema JWT completo con register/login
+-   **🔒 Password Security**: Hashing bcryptjs per password sicure
+-   **🛡️ Protected Routes**: Dashboard protetta con JWT
+-   **�📖 Documentazione**: Aggiunta documentazione completa e guida sicurezza
 -   **🔧 DevOps**: Aggiunto .gitignore e scripts npm ottimizzati
 
 ### v1.0 - Versione Originale
@@ -202,27 +248,8 @@ curl "http://localhost:3000/user/search?keyword=mario"
 -   **Mongoose** - ODM per MongoDB
 -   **Multer** - Gestione upload file
 -   **Cookie-parser** - Gestione cookie
+-   **Express-session** - Gestione sessioni utente
+-   **JsonWebToken (JWT)** - Autenticazione basata su token
+-   **Bcryptjs** - Hashing sicuro delle password
 -   **Dotenv** - Gestione variabili d'ambiente
 -   **Nodemon** - Auto-restart sviluppo
-
-## 🎯 Prossimi Sviluppi
-
--   [ ] Autenticazione JWT
--   [ ] Rate limiting
--   [ ] Validazione con Joi/Yup
--   [ ] Testing con Jest
--   [ ] Docker containerization
--   [ ] Swagger documentation
-
-## 📞 Supporto
-
-Per domande o problemi:
-
-1. Controlla i log del server per errori dettagliati
-2. Verifica la configurazione del database in `.env`
-3. Consulta questa documentazione per esempi d'uso
-
----
-
-**Status**: ✅ **Funzionante e Testato**  
-**Ultima modifica**: 15 Luglio 2025
