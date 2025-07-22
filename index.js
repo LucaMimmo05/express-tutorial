@@ -45,5 +45,5 @@ app.use(errorHandler); // Gestione errori globale
 
 // Avvio del server
 app.listen(config.PORT, () => {
-    console.log(`🚀 Server avviato su http://localhost:${config.PORT}`);
+    console.log(`🚀 Server started on: http://localhost:${config.PORT}`);
 });

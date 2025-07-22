@@ -88,9 +88,13 @@ export const handleFormUpload = (req, res) => {
     }
 };
 
-// Endpoint di test per errori
-export const triggerError = (req, res) => {
-    throw new Error("Questo è un errore di test");
+// Gestione Errori asincroni
+export const asyncError = async (req, res, next) => {
+    try {
+        await Promise.reject(new Error("Async error occured"));
+    } catch (err) {
+        next(err);
+    }
 };
 
 // Creazione sessione
@@ -133,4 +137,3 @@ export const visualizeDashboard = (req, res) => {
         return res.status(401).json({ message: "Invalid or expired token" });
     }
 };
-

@@ -5,10 +5,10 @@ import {
     fetchCookies,
     removeCookie,
     handleFormUpload,
-    triggerError,
+    asyncError,
     createSession,
     removeSession,
-    visualizeDashboard
+    visualizeDashboard,
 } from "../controllers/generalController.js";
 
 const router = express.Router();
@@ -25,8 +25,8 @@ router.get("/remove-cookie", removeCookie);
 // POST /form - Gestione upload form con file
 router.post("/form", upload.single("image"), handleFormUpload);
 
-// GET /error - Endpoint di test per errori
-router.get("/error", triggerError);
+// GET /async-error -Gestione errori asincroni
+router.get("/async-error", asyncError);
 
 // GET /visit - Endpoint per creare una sessione
 router.get("/visit", createSession);
