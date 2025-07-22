@@ -2,7 +2,7 @@
 
 ## 📋 Descrizione
 
-Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, upload di file, gestione cookie, **sessioni utente**, **autenticazione JWT** e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.
+Un'applicazione Express.js completamente riorganizzata e ottimizzata che include gestione di utenti, CRUD per persone, **gestione prodotti**, upload di file, gestione cookie, **sessioni utente**, **autenticazione JWT** e middleware personalizzati. Il progetto è stato ristrutturato seguendo le best practices per una migliore manutenibilità e scalabilità.
 
 ## 🏗️ Struttura del Progetto
 
@@ -15,6 +15,7 @@ express-app/
 ├── 📁 controllers/         # Controller per la logica business
 │   ├── generalController.js # Cookie, upload, home, sessioni, dashboard
 │   ├── personController.js  # CRUD persone
+│   ├── productController.js # Gestione prodotti
 │   └── userController.js    # Gestione utenti, auth JWT
 ├── 📁 middleware/          # Middleware personalizzati
 │   └── index.js            # Logging, errori, 404
@@ -23,6 +24,7 @@ express-app/
 ├── 📁 routes/              # Definizione rotte organizzate
 │   ├── generalRoutes.js    # Rotte generali, cookie, sessioni, dashboard
 │   ├── personRoutes.js     # Rotte CRUD persone
+│   ├── productRoutes.js    # Rotte gestione prodotti
 │   ├── userRoutes.js       # Rotte utenti, auth JWT
 │   └── index.js            # Aggregatore rotte
 ├── 📁 public/              # File statici
@@ -117,12 +119,21 @@ express-app/
 | `PUT`    | `/person`     | Aggiorna persona esistente |
 | `DELETE` | `/person/:id` | Elimina persona            |
 
+### 📦 Gestione Prodotti
+
+| Metodo | Endpoint       | Descrizione              |
+| ------ | -------------- | ------------------------ |
+| `GET`  | `/product`     | Ottieni tutti i prodotti |
+| `GET`  | `/product/:id` | Ottieni prodotto per ID  |
+| `POST` | `/product`     | Crea nuovo prodotto      |
+
 ## 🔧 Funzionalità Implementate
 
 ### ✅ Core Features
 
 -   ✅ **Database MongoDB** con Mongoose
 -   ✅ **CRUD completo** per entità Person
+-   ✅ **Gestione prodotti** con API RESTful
 -   ✅ **Upload file** con validazione tipo/dimensione
 -   ✅ **Gestione cookie** sicura
 -   ✅ **Gestione sessioni** con express-session
@@ -185,6 +196,24 @@ curl -X POST http://localhost:3000/form \
 curl http://localhost:3000/person
 ```
 
+### Gestione prodotti:
+
+```bash
+# Ottieni tutti i prodotti
+curl http://localhost:3000/product
+
+# Ottieni un prodotto specifico per ID
+curl http://localhost:3000/product/1
+
+# Crea un nuovo prodotto
+curl -X POST http://localhost:3000/product \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Smartphone",
+    "price": 699
+  }'
+```
+
 ### Ricerca utente:
 
 ```bash
@@ -225,12 +254,13 @@ curl http://localhost:3000/dashboard
 -   **🎯 Routing**: Organizzazione modulare delle rotte
 -   **📊 Configurazione**: Sistema centralizzato per configurazioni
 -   **✅ Validazione**: Migliorata validazione input e gestione errori
--   **� Sicurezza**: Gestione sicura variabili d'ambiente
+-   **🔐 Sicurezza**: Gestione sicura variabili d'ambiente
 -   **🍪 Sessioni**: Aggiunta gestione sessioni utente
 -   **🔑 Autenticazione**: Sistema JWT completo con register/login
 -   **🔒 Password Security**: Hashing bcryptjs per password sicure
 -   **🛡️ Protected Routes**: Dashboard protetta con JWT
--   **�📖 Documentazione**: Aggiunta documentazione completa e guida sicurezza
+-   **📦 Gestione Prodotti**: API RESTful per gestione prodotti
+-   **📖 Documentazione**: Aggiunta documentazione completa e guida sicurezza
 -   **🔧 DevOps**: Aggiunto .gitignore e scripts npm ottimizzati
 
 ### v1.0 - Versione Originale
