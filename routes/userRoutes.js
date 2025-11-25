@@ -11,15 +11,14 @@ const router = express.Router();
 // GET /user/search?keyword=... - Ricerca utenti (DEVE essere prima di /:username)
 router.get("/search", searchController);
 
-// GET /user/:username - Ottieni informazioni utente
-router.get("/:username", getUsers);
-
 //POST /user/register - Endpoint per registrazione utenti
 router.post("/register", userRegistration);
 
 //POST /user/login - Endpoint per login utenti
 router.post("/login", userLogin);
 
+// GET /user/:username - Ottieni informazioni utente (DEVE essere l'ultima)
+router.get("/find/:username", getUsers);
 
 
 export default router;
