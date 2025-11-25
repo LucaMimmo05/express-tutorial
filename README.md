@@ -20,7 +20,9 @@ express-app/
 ├── 📁 middleware/          # Middleware personalizzati
 │   └── index.js            # Logging, errori, 404
 ├── 📁 models/              # Modelli database Mongoose
-│   └── Person.js           # Schema persona
+│   ├── Person.js           # Schema persona
+│   ├── Product.js          # Schema prodotto
+│   └── User.js             # Schema utente
 ├── 📁 routes/              # Definizione rotte organizzate
 │   ├── generalRoutes.js    # Rotte generali, cookie, sessioni, dashboard
 │   ├── personRoutes.js     # Rotte CRUD persone
@@ -28,6 +30,7 @@ express-app/
 │   ├── userRoutes.js       # Rotte utenti, auth JWT
 │   └── index.js            # Aggregatore rotte
 ├── 📁 public/              # File statici
+│   └── index.html          # Documentazione API interattiva
 ├── 📁 uploads/             # File caricati dagli utenti
 ├── 📁 views/               # Template (future implementazioni)
 ├── .env                    # Variabili d'ambiente (NON committare)
@@ -41,14 +44,14 @@ express-app/
 
 ## 🚀 Installazione e Avvio
 
-1. **Installa le dipendenze:**
+1.  **Installa le dipendenze:**
 
     ```bash
     npm install
     ```
 
-2. **Configura le variabili d'ambiente:**
-   Il progetto utilizza il file `.env` per le configurazioni. Copia il file template e modifica i valori:
+2.  **Configura le variabili d'ambiente:**
+    Il progetto utilizza il file `.env` per le configurazioni. Copia il file template e modifica i valori:
 
     ```bash
     cp .env.example .env
@@ -74,7 +77,7 @@ express-app/
 
     **⚠️ Importante**: Non committare mai il file `.env` su GitHub! Contiene credenziali sensibili.
 
-3. **Avvia il server:**
+3.  **Avvia il server:**
 
     ```bash
     # Modalità sviluppo (con nodemon)
@@ -87,15 +90,16 @@ express-app/
 
 ## 📡 API Endpoints
 
+Visita `http://localhost:3000` per vedere la **documentazione interattiva** completa di tutti gli endpoint, parametri richiesti e modelli del database.
+
 ### 🏠 Endpoint Generali
 
 | Metodo | Endpoint          | Descrizione                       |
 | ------ | ----------------- | --------------------------------- |
-| `GET`  | `/`               | Home page (imposta cookie)        |
+| `GET`  | `/`               | Documentazione API                |
 | `GET`  | `/fetch`          | Leggi cookie salvati              |
 | `GET`  | `/remove-cookie`  | Rimuovi cookie                    |
 | `POST` | `/form`           | Upload file con form data         |
-| `GET`  | `/error`          | Test gestione errori              |
 | `GET`  | `/visit`          | Crea/incrementa sessione          |
 | `GET`  | `/remove-session` | Rimuovi sessione utente           |
 | `GET`  | `/dashboard`      | Dashboard protetta (richiede JWT) |
@@ -105,7 +109,7 @@ express-app/
 | Metodo | Endpoint                   | Descrizione                   |
 | ------ | -------------------------- | ----------------------------- |
 | `GET`  | `/user/search?keyword=...` | Ricerca utenti                |
-| `GET`  | `/user/:username`          | Informazioni utente specifico |
+| `GET`  | `/user/find/:username`     | Informazioni utente specifico |
 | `POST` | `/user/register`           | Registrazione nuovo utente    |
 | `POST` | `/user/login`              | Login utente (genera JWT)     |
 
@@ -132,8 +136,8 @@ express-app/
 ### ✅ Core Features
 
 -   ✅ **Database MongoDB** con Mongoose
--   ✅ **CRUD completo** per entità Person
--   ✅ **Gestione prodotti** con API RESTful
+-   ✅ **CRUD completo** per entità Person, Product e User
+-   ✅ **Gestione prodotti** salvati su database
 -   ✅ **Upload file** con validazione tipo/dimensione
 -   ✅ **Gestione cookie** sicura
 -   ✅ **Gestione sessioni** con express-session
@@ -145,6 +149,7 @@ express-app/
 -   ✅ **Struttura modulare** MVC
 -   ✅ **Risposte JSON standardizzate**
 -   ✅ **Configurazione sicura** con variabili d'ambiente
+-   ✅ **Interfaccia Web** moderna per la documentazione API
 
 ### 🛡️ Sicurezza e Validazione
 
@@ -155,7 +160,6 @@ express-app/
 -   ✔️ Validazione completa input utente
 -   🚫 Protezione contro path traversal negli upload
 -   🔐 **Gestione sicura variabili d'ambiente** (.env escluso da Git)
--   📋 **Template configurazione** (.env.example per nuovi sviluppatori)
 -   🔑 **JWT Authentication** con token sicuri
 -   🔒 **Password hashing** con bcryptjs (salt rounds: 10)
 -   🛡️ **Bearer token** validation sui endpoint protetti
@@ -167,6 +171,7 @@ express-app/
 -   📊 **Logging strutturato** con timestamp e IP
 -   🎯 **Error handling specifico** per tipo di errore
 -   📝 **Documentazione completa**
+-   🌐 **Pagina HTML** di benvenuto e documentazione
 
 ## 📝 Esempi di Utilizzo
 
@@ -203,7 +208,7 @@ curl http://localhost:3000/person
 curl http://localhost:3000/product
 
 # Ottieni un prodotto specifico per ID
-curl http://localhost:3000/product/1
+curl http://localhost:3000/product/656...
 
 # Crea un nuovo prodotto
 curl -X POST http://localhost:3000/product \
@@ -245,6 +250,14 @@ curl http://localhost:3000/dashboard
 ```
 
 ## 🔄 Changelog
+
+### v2.1 - UI & Database Models ✨
+
+-   **🌐 Interfaccia**: Nuova pagina HTML moderna per la documentazione API
+-   **📚 Documentazione**: Lista interattiva di endpoint e modelli
+-   **🗄️ Database**: Aggiunti modelli Mongoose per User e Product
+-   **🛡️ Resilienza**: Il server si avvia anche se il DB non è raggiungibile
+-   **🐛 Bugfix**: Corretto ordine delle rotte utente e gestione errori DB
 
 ### v2.0 - Ristrutturazione Completa ✨
 
