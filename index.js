@@ -14,13 +14,17 @@ import {
 const app = express();
 
 // Connessione al database
-await connectDB();
+try {
+    await connectDB();
+} catch (error) {
+    console.error("⚠️  Database connection failed, but starting server anyway...");
+}
 
 // Middleware globali
 app.use(cookieParser()); // Parser per i cookie
 app.use(express.json()); // Parser per JSON
 app.use(express.urlencoded({ extended: true })); // Parser per form data
-app.use(express.static("public")); // Serve file statici dalla cartella public
+app.use(express.static("public", { index: false })); // Serve file statici dalla cartella public
 app.use(session({
     secret: "sample-secret",
     resave:false,

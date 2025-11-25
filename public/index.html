@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Endpoints Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen py-10 px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-gray-900">Documentazione API</h1>
+            <p class="mt-2 text-gray-600">Lista completa degli endpoint disponibili e delle loro funzionalità.</p>
+        </div>
+
+        <div class="space-y-8">
+
+            <!-- General Section -->
+            <section class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-lg font-semibold text-gray-800">General & Utilities</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Questa pagina di documentazione.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/fetch</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Visualizza i cookie inviati dal client.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/remove-cookie</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Rimuove il cookie di sessione "name".</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
+                            <code class="text-sm font-mono text-gray-800">/form</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Upload di file e dati form (multipart/form-data).</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/visit</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Incrementa e visualizza il contatore visite della sessione.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/remove-session</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Distrugge la sessione corrente.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/dashboard</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Endpoint protetto. Richiede header
+                            <code>Authorization: Bearer &lt;token&gt;</code>.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Section -->
+            <section class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-lg font-semibold text-gray-800">Users</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
+                            <code class="text-sm font-mono text-gray-800">/user/register</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Registrazione nuovo utente.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
+                            <code class="text-sm font-mono text-gray-800">/user/login</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Login utente. Restituisce un token JWT.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/user/search?keyword=...</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Ricerca utenti per parola chiave.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/user/:username</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Ottieni dettagli di un utente specifico.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Person Section -->
+            <section class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-lg font-semibold text-gray-800">Persons (CRUD)</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Lista di tutte le persone.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
+                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Crea una nuova persona.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded">PUT</span>
+                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Aggiorna i dati di una persona esistente.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/person/:id</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Ottieni dettagli di una persona tramite ID.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-red-100 text-red-800 rounded">DELETE</span>
+                            <code class="text-sm font-mono text-gray-800">/person/:id</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Elimina una persona tramite ID.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Section -->
+            <section class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-lg font-semibold text-gray-800">Products</h2>
+                </div>
+                <div class="divide-y divide-gray-200">
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/product</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Lista di tutti i prodotti.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
+                            <code class="text-sm font-mono text-gray-800">/product</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Crea un nuovo prodotto.</p>
+                    </div>
+                    <div class="px-6 py-4">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
+                            <code class="text-sm font-mono text-gray-800">/product/:id</code>
+                        </div>
+                        <p class="text-sm text-gray-600">Ottieni dettagli di un prodotto tramite ID.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <footer class="mt-12 text-center text-sm text-gray-500">
+            <p>Generated by Express Server Documentation</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>

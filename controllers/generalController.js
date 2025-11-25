@@ -1,5 +1,10 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config/config.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Home page con impostazione cookie
 export const homePage = (req, res) => {
@@ -10,12 +15,7 @@ export const homePage = (req, res) => {
             secure: process.env.NODE_ENV === "production",
         });
 
-        res.json({
-            success: true,
-            message: "Benvenuto nella User API",
-            cookieSet: true,
-            timestamp: new Date().toISOString(),
-        });
+        res.sendFile(path.join(__dirname, "../public/index.html"));
     } catch (error) {
         res.status(500).json({
             success: false,

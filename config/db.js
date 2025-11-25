@@ -7,6 +7,6 @@ export const connectDB = async () => {
         console.log("✅ Database Connected Successfully");
     } catch (error) {
         console.error("❌ Database Connection Failed:", error.message);
-        process.exit(1);
+        // process.exit(1); // Removed to allow server to start without DB
     }
 };
