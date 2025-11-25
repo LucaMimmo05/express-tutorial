@@ -16,188 +16,247 @@
 
 <body class="bg-gray-50 min-h-screen py-10 px-4 sm:px-6 lg:px-8">
 
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <div class="text-center mb-10">
             <h1 class="text-3xl font-bold text-gray-900">Documentazione API</h1>
-            <p class="mt-2 text-gray-600">Lista completa degli endpoint disponibili e delle loro funzionalità.</p>
+            <p class="mt-2 text-gray-600">Lista completa degli endpoint con parametri e attributi richiesti.</p>
         </div>
 
         <div class="space-y-8">
 
             <!-- General Section -->
-            <section class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+            <section class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
                     <h2 class="text-lg font-semibold text-gray-800">General & Utilities</h2>
+                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">Base</span>
                 </div>
                 <div class="divide-y divide-gray-200">
+                    <!-- GET / -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/</code>
                         </div>
-                        <p class="text-sm text-gray-600">Questa pagina di documentazione.</p>
+                        <p class="text-sm text-gray-600 mb-2">Home page e documentazione.</p>
                     </div>
+
+                    <!-- GET /fetch -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/fetch</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/fetch</code>
                         </div>
-                        <p class="text-sm text-gray-600">Visualizza i cookie inviati dal client.</p>
+                        <p class="text-sm text-gray-600 mb-2">Visualizza i cookie inviati dal client.</p>
                     </div>
+
+                    <!-- POST /form -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/remove-cookie</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-green-100 text-green-800 rounded border border-green-200">POST</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/form</code>
                         </div>
-                        <p class="text-sm text-gray-600">Rimuove il cookie di sessione "name".</p>
+                        <p class="text-sm text-gray-600 mb-3">Upload di file e dati.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (multipart/form-data):</div>
+                            <div>image: &lt;file&gt;</div>
+                            <div>...altri campi form opzionali</div>
+                        </div>
                     </div>
+
+                    <!-- GET /dashboard -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
-                            <code class="text-sm font-mono text-gray-800">/form</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/dashboard</code>
                         </div>
-                        <p class="text-sm text-gray-600">Upload di file e dati form (multipart/form-data).</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/visit</code>
+                        <p class="text-sm text-gray-600 mb-3">Endpoint protetto.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">HEADERS:</div>
+                            <div>Authorization: Bearer &lt;token_jwt&gt;</div>
                         </div>
-                        <p class="text-sm text-gray-600">Incrementa e visualizza il contatore visite della sessione.</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/remove-session</code>
-                        </div>
-                        <p class="text-sm text-gray-600">Distrugge la sessione corrente.</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/dashboard</code>
-                        </div>
-                        <p class="text-sm text-gray-600">Endpoint protetto. Richiede header
-                            <code>Authorization: Bearer &lt;token&gt;</code>.</p>
                     </div>
                 </div>
             </section>
 
             <!-- User Section -->
-            <section class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+            <section class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
                     <h2 class="text-lg font-semibold text-gray-800">Users</h2>
+                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">Auth & Search</span>
                 </div>
                 <div class="divide-y divide-gray-200">
+                    <!-- POST /user/register -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
-                            <code class="text-sm font-mono text-gray-800">/user/register</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-green-100 text-green-800 rounded border border-green-200">POST</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/user/register</code>
                         </div>
-                        <p class="text-sm text-gray-600">Registrazione nuovo utente.</p>
+                        <p class="text-sm text-gray-600 mb-3">Registrazione nuovo utente.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (JSON):</div>
+                            <div>{</div>
+                            <div class="pl-4">"username": "string",</div>
+                            <div class="pl-4">"password": "string"</div>
+                            <div>}</div>
+                        </div>
                     </div>
+
+                    <!-- POST /user/login -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
-                            <code class="text-sm font-mono text-gray-800">/user/login</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-green-100 text-green-800 rounded border border-green-200">POST</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/user/login</code>
                         </div>
-                        <p class="text-sm text-gray-600">Login utente. Restituisce un token JWT.</p>
+                        <p class="text-sm text-gray-600 mb-3">Login utente. Restituisce un token JWT.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (JSON):</div>
+                            <div>{</div>
+                            <div class="pl-4">"username": "string",</div>
+                            <div class="pl-4">"password": "string"</div>
+                            <div>}</div>
+                        </div>
                     </div>
+
+                    <!-- GET /user/search -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/user/search?keyword=...</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/user/search</code>
                         </div>
-                        <p class="text-sm text-gray-600">Ricerca utenti per parola chiave.</p>
+                        <p class="text-sm text-gray-600 mb-3">Ricerca utenti.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">QUERY PARAMS:</div>
+                            <div>?keyword=&lt;string&gt;</div>
+                        </div>
                     </div>
+
+                    <!-- GET /user/:username -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/user/:username</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/user/:username</code>
                         </div>
-                        <p class="text-sm text-gray-600">Ottieni dettagli di un utente specifico.</p>
+                        <p class="text-sm text-gray-600 mb-3">Dettagli utente specifico.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">URL PARAMS:</div>
+                            <div>:username (string) - Nome utente da cercare</div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- Person Section -->
-            <section class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
-                    <h2 class="text-lg font-semibold text-gray-800">Persons (CRUD)</h2>
+            <section class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-gray-800">Persons</h2>
+                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">MongoDB CRUD</span>
                 </div>
                 <div class="divide-y divide-gray-200">
+                    <!-- POST /person -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-green-100 text-green-800 rounded border border-green-200">POST</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/person</code>
                         </div>
-                        <p class="text-sm text-gray-600">Lista di tutte le persone.</p>
+                        <p class="text-sm text-gray-600 mb-3">Crea una nuova persona.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (JSON):</div>
+                            <div>{</div>
+                            <div class="pl-4">"name": "string", <span class="text-red-500">*required</span></div>
+                            <div class="pl-4">"email": "string", <span class="text-red-500">*required</span></div>
+                            <div class="pl-4">"age": number <span class="text-red-500">*required</span></div>
+                            <div>}</div>
+                        </div>
                     </div>
+
+                    <!-- PUT /person -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
-                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-yellow-100 text-yellow-800 rounded border border-yellow-200">PUT</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/person</code>
                         </div>
-                        <p class="text-sm text-gray-600">Crea una nuova persona.</p>
+                        <p class="text-sm text-gray-600 mb-3">Aggiorna una persona esistente.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (JSON):</div>
+                            <div>{</div>
+                            <div class="pl-4">"id": "string", <span class="text-red-500">*required</span></div>
+                            <div class="pl-4">"name": "string",</div>
+                            <div class="pl-4">"email": "string",</div>
+                            <div class="pl-4">"age": number</div>
+                            <div>}</div>
+                        </div>
                     </div>
+
+                    <!-- GET /person/:id -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-yellow-100 text-yellow-800 rounded">PUT</span>
-                            <code class="text-sm font-mono text-gray-800">/person</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/person/:id</code>
                         </div>
-                        <p class="text-sm text-gray-600">Aggiorna i dati di una persona esistente.</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/person/:id</code>
+                        <p class="text-sm text-gray-600 mb-3">Ottieni persona per ID.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">URL PARAMS:</div>
+                            <div>:id (MongoDB ObjectId)</div>
                         </div>
-                        <p class="text-sm text-gray-600">Ottieni dettagli di una persona tramite ID.</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-red-100 text-red-800 rounded">DELETE</span>
-                            <code class="text-sm font-mono text-gray-800">/person/:id</code>
-                        </div>
-                        <p class="text-sm text-gray-600">Elimina una persona tramite ID.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Product Section -->
-            <section class="bg-white shadow rounded-lg overflow-hidden">
-                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+            <section class="bg-white shadow rounded-lg overflow-hidden border border-gray-200">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex items-center justify-between">
                     <h2 class="text-lg font-semibold text-gray-800">Products</h2>
+                    <span class="text-xs font-medium text-gray-500 uppercase tracking-wider">Static Data</span>
                 </div>
                 <div class="divide-y divide-gray-200">
+                    <!-- POST /product -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/product</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-green-100 text-green-800 rounded border border-green-200">POST</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/product</code>
                         </div>
-                        <p class="text-sm text-gray-600">Lista di tutti i prodotti.</p>
+                        <p class="text-sm text-gray-600 mb-3">Crea un nuovo prodotto (in memoria).</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">BODY (JSON):</div>
+                            <div>{</div>
+                            <div class="pl-4">"name": "string",</div>
+                            <div class="pl-4">"price": number</div>
+                            <div>}</div>
+                        </div>
                     </div>
+
+                    <!-- GET /product/:id -->
                     <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-green-100 text-green-800 rounded">POST</span>
-                            <code class="text-sm font-mono text-gray-800">/product</code>
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-bold bg-blue-100 text-blue-800 rounded border border-blue-200">GET</span>
+                            <code class="text-sm font-mono text-gray-900 font-semibold">/product/:id</code>
                         </div>
-                        <p class="text-sm text-gray-600">Crea un nuovo prodotto.</p>
-                    </div>
-                    <div class="px-6 py-4">
-                        <div class="flex items-center gap-3 mb-1">
-                            <span class="px-2 py-1 text-xs font-bold bg-blue-100 text-blue-800 rounded">GET</span>
-                            <code class="text-sm font-mono text-gray-800">/product/:id</code>
+                        <p class="text-sm text-gray-600 mb-3">Ottieni prodotto per ID numerico.</p>
+                        <div class="bg-gray-50 rounded p-3 text-xs font-mono text-gray-700 border border-gray-200">
+                            <div class="font-semibold text-gray-500 mb-1">URL PARAMS:</div>
+                            <div>:id (number)</div>
                         </div>
-                        <p class="text-sm text-gray-600">Ottieni dettagli di un prodotto tramite ID.</p>
                     </div>
                 </div>
             </section>
 
         </div>
 
-        <footer class="mt-12 text-center text-sm text-gray-500">
-            <p>Generated by Express Server Documentation</p>
+        <footer class="mt-12 text-center text-sm text-gray-500 pb-10">
+            <p>&copy; 2025 Express Server Documentation</p>
         </footer>
     </div>
 
